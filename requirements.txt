@@ -16,3 +16,5 @@ tqdm>=4.64.0
 filterpy==1.4.5
 scikit-image==0.20.0
 pyodbc==4.0.39
+cx_freeze==6.14.9
+datetime==5.1

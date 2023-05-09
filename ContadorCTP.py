@@ -1,14 +1,26 @@
-from tkinter import ttk
 import cv2
 import math
 import cvzone
 from ultralytics import YOLO
 from tkinter import *
+from tkinter import ttk
 from PIL import Image, ImageTk
 from sort import *
 from datetime import *
-import pyodbc
 from conexion import conex
+import sys
+
+
+class recursion_depth:
+    def __init__(self, limit):
+        self.limit = limit
+        self.default_limit = sys.getrecursionlimit()
+
+    def __enter__(self):
+        sys.setrecursionlimit(self.limit)
+
+    def __exit__(self, type, value, traceback):
+        sys.setrecursionlimit(self.default_limit)
 
 
 # CONEXION BASE DE DATOS
@@ -17,7 +29,7 @@ cursor = conn.cursor()
 consulta = "INSERT INTO conteo(fecha, entradas) VALUES (?, ?);"
 
 # inicializar el Modelo de YOLOY
-model = YOLO("../Yolo-Weights/yolov8n.pt")
+model = YOLO("Yolo-Weights/yolov8n.pt")
 
 classNames = ["person", "bicycle", "car", "motorbike", "aeroplane", "bus", "train", "truck", "boat",
               "traffic light", "fire hydrant", "stop sign", "parking meter", "bench", "bird", "cat",
@@ -198,8 +210,7 @@ gray = 0
 # INTERFAZ
 pantalla = Tk()
 pantalla.title("Tiendas Cortitelas | People Counter")
-pantalla.state('zoomed') # Dimensión de la ventana
-
+pantalla.state('zoomed')  # Dimensión de la ventana
 
 # Fondo
 imagenF = PhotoImage(file="Fondo.png")
@@ -239,6 +250,7 @@ cap = cv2.VideoCapture(0)
 cap.set(1, 1700)
 cap.set(4, 520)
 
-visualizar()
+with recursion_depth(5000):
+    visualizar()
 
 pantalla.mainloop()
