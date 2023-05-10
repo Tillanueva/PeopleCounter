@@ -213,9 +213,6 @@ pantalla.title("Tiendas Cortitelas | People Counter")
 pantalla.state('zoomed')  # Dimensión de la ventana
 
 # Fondo
-imagenF = PhotoImage(file="Fondo.png")
-background = Label(image=imagenF, text="Fondo")
-background.place(x=0, y=0, relwidth=1, relheight=1)
 
 texto1 = Label(pantalla, text="Video en tiempo real: ")
 texto1.config(font="Sans-serif")
