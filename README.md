@@ -46,7 +46,10 @@ mismo mes o con el mismo año.
 ### - Librerías utilizadas
 
 En el archivo requirementes.txt se encuentran enumeradas las linbrerías que 
-son necesarias para que la aplicación pueda ser ejecutada de manera correcta.
+son necesarias para que la aplicación pueda ser ejecutada de manera correcta. 
+De esta forma todas las librerías se instalarán automáticamente de manera 
+instantánea
+
 
 
 
