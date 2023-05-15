@@ -27,6 +27,7 @@ La interfaz de People Counter es sencilla ya que unicamente debe iniciar
 la aplicación y esta empezará a realizar un conteo al mismo tiempo que este 
 muestra una tabla y una grafica con los datos almacenados en tiempo real
 
+********
 ## Manual Técnico
 ### - Base de datos y conexión
 La base de datos consta de una única tabla en donde se almacena el conteo 
@@ -46,5 +47,9 @@ mismo mes o con el mismo año.
 
 En el archivo requirementes.txt se encuentran enumeradas las linbrerías que 
 son necesarias para que la aplicación pueda ser ejecutada de manera correcta.
+
+
+
+
 
 
