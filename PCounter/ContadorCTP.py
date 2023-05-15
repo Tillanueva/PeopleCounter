@@ -17,7 +17,7 @@ from data import traficoMensual, traficoDia, traficoAnual
 # CONEXION BASE DE DATOS
 conn = conex.connec
 cursor = conn.cursor()
-consulta = "INSERT INTO conteo(fecha, entradas) VALUES (?, ?);"
+
 
 # inicializar el Modelo de YOLOY
 model = YOLO("Yolo-Weights/yolov8n.pt")
@@ -206,10 +206,6 @@ pantalla = Tk()
 pantalla.title("Tiendas Cortitelas | People Counter")
 pantalla.state('zoomed')  # Dimensión de la ventana
 
-# Frame Gráficas
-charts_frame = tk.Frame(root)
-charts_frame.config(height=10)
-charts_frame.place(x=900, y=345)
 # Fondo
 texto1 = Label(pantalla, text="Video en tiempo real: ")
 texto1.config(font="Sans-serif")
@@ -229,21 +225,14 @@ tree.heading('0', text='Fecha', anchor=CENTER)
 tree.heading('1', text='Total Personas', anchor=CENTER)
 tree.place(x=900, y=95)
 
-# Chart 2: Horizontal bar chart of inventory data
-fig2, ax2 = plt.subplots()
-ax2.bar(traficoMensual.keys(), traficoMensual.values())
-ax2.set_title("Tráfico los últimos 5 meses")
-ax2.set_xlabel("Mes")
-ax2.set_ylabel("Tráfico")
-
-canvas2 = FigureCanvasTkAgg(fig2, pantalla)
-canvas2.draw()
-canvas2.get_tk_widget().pack(side="left", fill="both", expand=True)
-
-
-lower_frame = tk.Frame(charts_frame)
-lower_frame.pack(fill="both", expand=True)
-
+# Muestra la tabla de tráfico por mes
+tree1 = ttk.Treeview(pantalla, height=10, columns=('0', '1'), show="headings")
+tree1.grid(row=4, column=0, columnspan=2)
+tree1.column('0', anchor=CENTER)
+tree1.column('1', anchor=CENTER)
+tree1.heading('0', text='Mes', anchor=CENTER)
+tree1.heading('1', text='Total Personas', anchor=CENTER)
+tree1.place(x=900, y=345)
 
 # Video
 

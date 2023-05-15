@@ -13,11 +13,13 @@ from conexion import conex
 from matplotlib.backends.backend_tkagg import FigureCanvasTkAgg
 from data import traficoMensual, traficoDia, traficoAnual
 
-
 # CONEXION BASE DE DATOS
 conn = conex.connec
 cursor = conn.cursor()
-consulta = "INSERT INTO conteo(fecha, entradas) VALUES (?, ?);"
+
+# Colores
+plt.rcParams["axes.prop_cycle"] = plt.cycler(
+    color=["#4C2A85", "#BE96FF", "#957DAD", "#5E366E", "#A98CCC"])
 
 # inicializar el Modelo de YOLOY
 model = YOLO("Yolo-Weights/yolov8n.pt")
@@ -35,11 +37,9 @@ classNames = ["person", "bicycle", "car", "motorbike", "aeroplane", "bus", "trai
 
 # Variables de conteo
 conteo = []
-salidas = []
 global count
 # Coordenadas límites verticales para poder contar a la persona
 limitsUp = [0, 300, 1280, 300]  # Entrada
-
 # variable de seguimiento de objetos
 trackers = Sort(max_age=20, min_hits=3, iou_threshold=0.3)
 
@@ -119,10 +119,9 @@ def visualizar():
                         conteo.append(id1)
                         try:
                             with cursor:
-                                cursor.execute(consulta, (fecha, 1))
+                                cursor.execute(conex.consulta, (fecha, 1))
                                 print("Almacenado")
                                 mostrarDia()
-                                mostrarMes()
                         except Exception as e:
                             print("Ocurrió un error al insertar: ", e)
 
@@ -176,25 +175,6 @@ def mostrarDia():
             tree.insert('', 'end', values=(record[0], record[1]), tags=('oddrow',))
 
 
-def mostrarMes():
-    # Ejecuta procedimiento almacenado a partir de cadena de conexión
-    cursor.execute("exec ConteoMesDesc")
-    # lee todos los datos de la tabla
-    records = cursor.fetchall()
-    # Contador para ver la cantidad de datos en el tree
-    global count
-    count = 0
-    # Elimina todos los datos del tree
-    for record in tree1.get_children():
-        tree1.delete(record)
-    # Una vez que el tree está vacío llena la tabla con el procedimiento almacenado
-    for record in records:
-        if count == 0:
-            tree1.insert('', 'end', values=(record[0], record[1]), tags=('evenrow',))
-        else:
-            tree1.insert('', 'end', values=(record[0], record[1]), tags=('oddrow',))
-
-
 # VARIABLES
 cap = None
 rgb = 1
@@ -205,6 +185,11 @@ gray = 0
 pantalla = Tk()
 pantalla.title("Tiendas Cortitelas | People Counter")
 pantalla.state('zoomed')  # Dimensión de la ventana
+
+# Frame Gráficas
+charts_frame = tk.Frame(pantalla)
+charts_frame.config(height=10)
+charts_frame.place(x=900, y=345)
 
 # Fondo
 texto1 = Label(pantalla, text="Video en tiempo real: ")
@@ -225,14 +210,20 @@ tree.heading('0', text='Fecha', anchor=CENTER)
 tree.heading('1', text='Total Personas', anchor=CENTER)
 tree.place(x=900, y=95)
 
-# Muestra la tabla de tráfico por mes
-tree1 = ttk.Treeview(pantalla, height=10, columns=('0', '1'), show="headings")
-tree1.grid(row=4, column=0, columnspan=2)
-tree1.column('0', anchor=CENTER)
-tree1.column('1', anchor=CENTER)
-tree1.heading('0', text='Mes', anchor=CENTER)
-tree1.heading('1', text='Total Personas', anchor=CENTER)
-tree1.place(x=900, y=345)
+# Chart 2: Horizontal bar chart of inventory data
+fig2, ax2 = plt.subplots()
+ax2.bar(traficoMensual.keys(), traficoMensual.values())
+ax2.set_title("Tráfico los últimos 5 meses")
+ax2.set_xlabel("Mes")
+ax2.set_ylabel("Tráfico")
+
+
+def grafica():
+    canvas2 = FigureCanvasTkAgg(fig2, charts_frame)
+    canvas2.draw()
+    canvas2.get_tk_widget().pack(side="left", fill="both")
+    canvas2.get_tk_widget().config(height=300, width=400)
+
 
 # Video
 
@@ -240,9 +231,8 @@ cap = cv2.VideoCapture(0)
 cap.set(1, 1700)
 cap.set(4, 520)
 
-
 visualizar()
-mostrarMes()
 mostrarDia()
+grafica()
 
 pantalla.mainloop()
