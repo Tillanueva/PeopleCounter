@@ -1,6 +1,8 @@
 import cv2
 import math
 import cvzone
+import tkinter as tk
+import matplotlib.pyplot as plt
 from ultralytics import YOLO
 from tkinter import *
 from tkinter import ttk
@@ -8,19 +10,8 @@ from PIL import Image, ImageTk
 from sort import *
 from datetime import *
 from conexion import conex
-import sys
-
-
-class recursion_depth:
-    def __init__(self, limit):
-        self.limit = limit
-        self.default_limit = sys.getrecursionlimit()
-
-    def __enter__(self):
-        sys.setrecursionlimit(self.limit)
-
-    def __exit__(self, type, value, traceback):
-        sys.setrecursionlimit(self.default_limit)
+from matplotlib.backends.backend_tkagg import FigureCanvasTkAgg
+from data import traficoMensual, traficoDia, traficoAnual
 
 
 # CONEXION BASE DE DATOS
@@ -168,15 +159,16 @@ def times():
 
 
 def mostrarDia():
+    # Ejecuta procedimiento almacenado a partir de cadena de conexión
     cursor.execute(" exec ConeoDiarioDesc")
     records = cursor.fetchall()
-
+    # lee todos los datos de la tabla
     global count
     count = 0
-
+    # Elimina todos los datos del tree
     for record in tree.get_children():
         tree.delete(record)
-
+    # Una vez que el tree está vacío llena la tabla con el procedimiento almacenado
     for record in records:
         if count == 0:
             tree.insert('', 'end', values=(record[0], record[1]), tags=('evenrow',))
@@ -185,15 +177,17 @@ def mostrarDia():
 
 
 def mostrarMes():
+    # Ejecuta procedimiento almacenado a partir de cadena de conexión
     cursor.execute("exec ConteoMesDesc")
+    # lee todos los datos de la tabla
     records = cursor.fetchall()
-
+    # Contador para ver la cantidad de datos en el tree
     global count
     count = 0
-
+    # Elimina todos los datos del tree
     for record in tree1.get_children():
         tree1.delete(record)
-
+    # Una vez que el tree está vacío llena la tabla con el procedimiento almacenado
     for record in records:
         if count == 0:
             tree1.insert('', 'end', values=(record[0], record[1]), tags=('evenrow',))
@@ -213,7 +207,6 @@ pantalla.title("Tiendas Cortitelas | People Counter")
 pantalla.state('zoomed')  # Dimensión de la ventana
 
 # Fondo
-
 texto1 = Label(pantalla, text="Video en tiempo real: ")
 texto1.config(font="Sans-serif")
 texto1.place(x=400, y=20)
@@ -247,7 +240,9 @@ cap = cv2.VideoCapture(0)
 cap.set(1, 1700)
 cap.set(4, 520)
 
-with recursion_depth(5000):
-    visualizar()
+
+visualizar()
+mostrarMes()
+mostrarDia()
 
 pantalla.mainloop()
