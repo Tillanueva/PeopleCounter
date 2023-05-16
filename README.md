@@ -49,6 +49,7 @@ En el archivo requirementes.txt se encuentran enumeradas las linbrerías que
 son necesarias para que la aplicación pueda ser ejecutada de manera correcta. 
 De esta forma todas las librerías se instalarán automáticamente de manera 
 instantánea
+![requirements](https://github.com/Tillanueva/PeopleCounter/assets/128622581/1f0c3d51-2f8a-495d-8271-74a1c9b7e4b2)
 
 
 
