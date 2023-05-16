@@ -58,7 +58,10 @@ la aplicación sino que se ejecutan en segundo plano.
 ![libreriasContador](https://github.com/Tillanueva/PeopleCounter/assets/128622581/d06fb6b8-0db0-4c5c-90a2-5978878f5504)
 
 Estas son las librerías utilizadas en el módulo principal de la aplicación.
+<<<<<<< Updated upstream
 
+=======
+>>>>>>> Stashed changes
 
 
 
