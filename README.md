@@ -55,9 +55,9 @@ la aplicación sino que se ejecutan en segundo plano.
 
 ### - Librerías importadas
 
-![libreriasContador](https://github.com/Tillanueva/PeopleCounter/assets/128622581/2d6ec703-ba6e-45c9-8ab0-de9a3e8f9a9a)
+![libreriasContador](https://github.com/Tillanueva/PeopleCounter/assets/128622581/d06fb6b8-0db0-4c5c-90a2-5978878f5504)
 
-
+Estas son las librerías utilizadas en el módulo principal de la aplicación.
 
 
 
