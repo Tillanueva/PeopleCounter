@@ -45,11 +45,19 @@ mismo mes o con el mismo año.
 
 ### - Librerías utilizadas
 
+![requirements](https://github.com/Tillanueva/PeopleCounter/assets/128622581/1f0c3d51-2f8a-495d-8271-74a1c9b7e4b2)
+
 En el archivo requirementes.txt se encuentran enumeradas las linbrerías que 
 son necesarias para que la aplicación pueda ser ejecutada de manera correcta. 
 De esta forma todas las librerías se instalarán automáticamente de manera 
-instantánea
-![requirements](https://github.com/Tillanueva/PeopleCounter/assets/128622581/1f0c3d51-2f8a-495d-8271-74a1c9b7e4b2)
+instantánea. Aulgunas de estas librerías no se importan directamente en el códio de 
+la aplicación sino que se ejecutan en segundo plano.
+
+### - Librerías importadas
+
+![libreriasContador](https://github.com/Tillanueva/PeopleCounter/assets/128622581/2d6ec703-ba6e-45c9-8ab0-de9a3e8f9a9a)
+
+
 
 
 
