@@ -4,7 +4,7 @@ import matplotlib.pyplot as plt
 from data import traficoMensual, traficoDia, traficoAnual
 
 
-class dashboard:
+def dashboard():
     plt.rcParams["axes.prop_cycle"] = plt.cycler(
         color=["#4C2A85", "#BE96FF", "#957DAD", "#5E366E", "#A98CCC"])
 
@@ -32,7 +32,8 @@ class dashboard:
     side_frame.pack(side="left", fill="y")
 
     label = tk.Label(side_frame, text="Dashboard", bg="#4C2A85", fg="#FFF", font=25)
-    label.pack(pady=50, padx=20)
+    label.pack(pady=5, padx=0)
+    label.config(width=20, height=2)
 
     charts_frame = tk.Frame(root)
     charts_frame.pack()

@@ -10,8 +10,7 @@ from PIL import Image, ImageTk
 from sort import *
 from datetime import *
 from conexion import conex
-from matplotlib.backends.backend_tkagg import FigureCanvasTkAgg
-from data import traficoMensual, traficoDia, traficoAnual
+from dashboard import dashboard
 
 # CONEXION BASE DE DATOS
 conn = conex.connec
@@ -122,6 +121,7 @@ def visualizar():
                                 cursor.execute(conex.consulta, (fecha, 1))
                                 print("Almacenado")
                                 mostrarDia()
+                                mostrarMes()
                         except Exception as e:
                             print("Ocurrió un error al insertar: ", e)
 
@@ -134,20 +134,24 @@ def visualizar():
             lblVideo.place(x=10, y=95)
 
             # Mostramos en el GUI
-            lblVideo.configure(image=img, width=870)
+            lblVideo.config(image=img)
             lblVideo.image = img
             lblVideo.after(5, visualizar)
 
             # Muestra en conteo de personas en la ventana
             global count
             count = str(len(conteo))
-            lblConteo = Label(pantalla, text="Ingreso de personas: " + count)
+            lblConteo = Label(pantalla, text="Ingreso de personas hoy: " + count)
             lblConteo.config(font="Sans-serif")
             lblConteo.place(x=1000, y=20)
 
         else:
 
             cap.release()
+
+
+def Mostrardashboard():
+    dashboard()
 
 
 def times():
@@ -175,6 +179,25 @@ def mostrarDia():
             tree.insert('', 'end', values=(record[0], record[1]), tags=('oddrow',))
 
 
+def mostrarMes():
+    # Ejecuta procedimiento almacenado a partir de cadena de conexión
+    cursor.execute("exec ConteoMesDesc")
+    # lee todos los datos de la tabla
+    records = cursor.fetchall()
+    # Contador para ver la cantidad de datos en el tree
+    global count
+    count = 0
+    # Elimina todos los datos del tree
+    for record in tree1.get_children():
+        tree1.delete(record)
+    # Una vez que el tree está vacío llena la tabla con el procedimiento almacenado
+    for record in records:
+        if count == 0:
+            tree1.insert('', 'end', values=(record[0], record[1]), tags=('evenrow',))
+        else:
+            tree1.insert('', 'end', values=(record[0], record[1]), tags=('oddrow',))
+
+
 # VARIABLES
 cap = None
 rgb = 1
@@ -186,11 +209,6 @@ pantalla = Tk()
 pantalla.title("Tiendas Cortitelas | People Counter")
 pantalla.state('zoomed')  # Dimensión de la ventana
 
-# Frame Gráficas
-charts_frame = tk.Frame(pantalla)
-charts_frame.config(height=10)
-charts_frame.place(x=900, y=345)
-
 # Fondo
 texto1 = Label(pantalla, text="Video en tiempo real: ")
 texto1.config(font="Sans-serif")
@@ -201,6 +219,11 @@ lblFecha = Label(pantalla)
 lblFecha.place(x=10, y=20)
 times()  # Función captura fecha actual
 
+btnDashboard = Button(pantalla, text="Dashboard", bg="#4C2A85", fg="#FFF", font=25, command=Mostrardashboard)
+btnDashboard.pack(pady=5, padx=0)
+btnDashboard.config(width=20, height=2)
+btnDashboard.place(x=1135, y=95)
+
 # Muestra la tabla de tráfico por día
 tree = ttk.Treeview(pantalla, columns=('0', '1'), show="headings", height=10, )
 tree.grid(row=4, column=0, columnspan=2)
@@ -208,23 +231,16 @@ tree.column('0', anchor=CENTER)
 tree.column('1', anchor=CENTER)
 tree.heading('0', text='Fecha', anchor=CENTER)
 tree.heading('1', text='Total Personas', anchor=CENTER)
-tree.place(x=900, y=95)
+tree.place(x=710, y=95)
 
-# Chart 2: Horizontal bar chart of inventory data
-fig2, ax2 = plt.subplots()
-ax2.bar(traficoMensual.keys(), traficoMensual.values())
-ax2.set_title("Tráfico los últimos 5 meses")
-ax2.set_xlabel("Mes")
-ax2.set_ylabel("Tráfico")
-
-
-def grafica():
-    canvas2 = FigureCanvasTkAgg(fig2, charts_frame)
-    canvas2.draw()
-    canvas2.get_tk_widget().pack(side="left", fill="both")
-    canvas2.get_tk_widget().config(height=300, width=400)
-
-
+# Muestra la tabla de tráfico por mes
+tree1 = ttk.Treeview(pantalla, height=10, columns=('0', '1'), show="headings")
+tree1.grid(row=4, column=0, columnspan=2)
+tree1.column('0', anchor=CENTER)
+tree1.column('1', anchor=CENTER)
+tree1.heading('0', text='Mes', anchor=CENTER)
+tree1.heading('1', text='Total Personas', anchor=CENTER)
+tree1.place(x=710, y=345)
 # Video
 
 cap = cv2.VideoCapture(0)
@@ -232,7 +248,7 @@ cap.set(1, 1700)
 cap.set(4, 520)
 
 visualizar()
+mostrarMes()
 mostrarDia()
-grafica()
 
 pantalla.mainloop()

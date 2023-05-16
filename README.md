@@ -15,6 +15,7 @@ del entorno de esta aplicación para su uso y mantenimiento.
 ### - Base de datos
 
 1. Instalar Backup de PROJECT_PC01
+    - Debe asegurarse de tener instalado Microsoft SQL Server.
 2. Configurar entorno de Microsoft SQL Server Management Studio 
 para conexion remota
 
@@ -53,7 +54,7 @@ De esta forma todas las librerías se instalarán automáticamente de manera
 instantánea. Aulgunas de estas librerías no se importan directamente en el códio de 
 la aplicación sino que se ejecutan en segundo plano.
 
-### - Librerías importadas
+### - Librerías importadas 
 
 ![libreriasContador](https://github.com/Tillanueva/PeopleCounter/assets/128622581/d06fb6b8-0db0-4c5c-90a2-5978878f5504)
 
