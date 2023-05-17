@@ -56,11 +56,21 @@ la aplicación sino que se ejecutan en segundo plano.
 
 ### - Librerías importadas 
 
-![libreriasContador](https://github.com/Tillanueva/PeopleCounter/assets/128622581/d06fb6b8-0db0-4c5c-90a2-5978878f5504)
+![libreriasContador](https://github.com/Tillanueva/PeopleCounter/assets/128622581/5b3740ef-24f7-48aa-8ca2-a47a4b460eea)
 
 Estas son las librerías utilizadas en el módulo principal de la aplicación.
 
+![llamadaConex](https://github.com/Tillanueva/PeopleCounter/assets/128622581/f6f69dcc-76d0-4949-a149-915f0be01355)
 
+En esta linea se llama a la cadena de conexión ubicada en el archivo conexion.py 
+
+![Modelo YOLO](https://github.com/Tillanueva/PeopleCounter/assets/128622581/2d574aa1-58be-4610-9eee-97a9e9745620)
+
+Se crea el modelo de YOLO y la lista que contiene los nombres de los distintos objetos.
+
+![varConteos](https://github.com/Tillanueva/PeopleCounter/assets/128622581/bec6c11b-1c0b-4850-ab30-04b7df002c3d)
+
+Aquí se inicializan las variables de lectura y conteo.
 
 
 
