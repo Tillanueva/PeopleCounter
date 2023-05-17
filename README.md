@@ -13,11 +13,11 @@ En este apartado se describirán las instrucciones de configuración
 del entorno de esta aplicación para su uso y mantenimiento.
 
 ### - Base de datos
+1. Configurar entorno de Microsoft SQL Server Management Studio 
+para conexion remota.
+2. Asegurese de estar conectado en red y tener acceso a la base de 
+datos de manera remota.
 
-1. Instalar Backup de PROJECT_PC01
-    - Debe asegurarse de tener instalado Microsoft SQL Server.
-2. Configurar entorno de Microsoft SQL Server Management Studio 
-para conexion remota
 
 ### - Ejecutable
 1. Buscar en la carpeta "bulid" el archivo ejecutable llamado ContadorCT
@@ -59,6 +59,8 @@ la aplicación sino que se ejecutan en segundo plano.
 ![libreriasContador](https://github.com/Tillanueva/PeopleCounter/assets/128622581/d06fb6b8-0db0-4c5c-90a2-5978878f5504)
 
 Estas son las librerías utilizadas en el módulo principal de la aplicación.
+
+
 
 
 

@@ -209,6 +209,8 @@ pantalla = Tk()
 pantalla.title("Tiendas Cortitelas | People Counter")
 pantalla.state('zoomed')  # Dimensión de la ventana
 
+icon = PhotoImage(file="icon.png")
+
 # Fondo
 texto1 = Label(pantalla, text="Video en tiempo real: ")
 texto1.config(font="Sans-serif")
@@ -251,4 +253,5 @@ visualizar()
 mostrarMes()
 mostrarDia()
 
+pantalla.iconphoto(True, icon)
 pantalla.mainloop()
