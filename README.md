@@ -84,7 +84,8 @@ objetos y este los reconoce. Para poder entrenar el modelo de YOLO, se
 estableció una lista con distintos nombres de objetos, entre ellos
 persona.
 
-#### - Variables de conteo 
+#### - Variables de conteo
+
 ![varConteos](https://github.com/Tillanueva/PeopleCounter/assets/128622581/bec6c11b-1c0b-4850-ab30-04b7df002c3d)
 
 Aquí se inicializan las variables de lectura y conteo. se crea
@@ -94,9 +95,14 @@ forma vertical. Por último , trackers es una variable a la cual
 se le asigna el método Sort() el cual re organiza la lista de conteo.
 
 
+#### - Función Visualizar
 
-
-
-
+    def visualizar():
+        if cap is not None:
+    
+            fecha = times()
+            # CONSULTA A LA BASE DE DATOS
+    
+            ret, frame = cap.read()
 
 
