@@ -75,7 +75,7 @@ asigna el método cursor() para poder comunicarse con la base
 de datos.
 
 #### - Modelo YOLO
-        # inicializar el Modelo de YOLOY
+    # inicializar el Modelo de YOLOY
     model = YOLO("Yolo-Weights/yolov8n.pt")
     
     classNames = ["person", "bicycle", "car", "motorbike", "aeroplane", "bus", "train", "truck", "boat",
