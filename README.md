@@ -54,23 +54,46 @@ De esta forma todas las librerías se instalarán automáticamente de manera
 instantánea. Aulgunas de estas librerías no se importan directamente en el códio de 
 la aplicación sino que se ejecutan en segundo plano.
 
-### - Librerías importadas 
+### - Código
+#### - Librerías 
 
 ![libreriasContador](https://github.com/Tillanueva/PeopleCounter/assets/128622581/5b3740ef-24f7-48aa-8ca2-a47a4b460eea)
 
-Estas son las librerías utilizadas en el módulo principal de la aplicación.
+Estas son las librerías utilizadas en el módulo principal de la aplicación. Muchas 
+de ellas se instalaron previamente en los requerimientos para poder 
+ser importadas, otras se instalan automáticamente cuando se instala python
+como datetime, PIL, math o tkinter.
+
+#### - Conexión a Base de Datos
 
 ![llamadaConex](https://github.com/Tillanueva/PeopleCounter/assets/128622581/f6f69dcc-76d0-4949-a149-915f0be01355)
 
-En esta linea se llama a la cadena de conexión ubicada en el archivo conexion.py 
+En esta linea se llama a la cadena de conexión ubicada en el 
+archivo conexion.py. Se crea la variable de conn y se le da 
+el valor de la linea de conexión. A la variable cursor se le
+asigna el método cursor() para poder comunicarse con la base 
+de datos.
+
+#### - Modelo YOLO
 
 ![Modelo YOLO](https://github.com/Tillanueva/PeopleCounter/assets/128622581/2d574aa1-58be-4610-9eee-97a9e9745620)
 
-Se crea el modelo de YOLO y la lista que contiene los nombres de los distintos objetos.
+Ultralytics es una librería de una red neuronal la cual se puede 
+entrenar por medio del modelo YOLO, a este se le envían distintos
+objetos y este los reconoce. Para poder entrenar el modelo de YOLO, se 
+estableció una lista con distintos nombres de objetos, entre ellos
+persona.
 
+#### - Variables de conteo 
 ![varConteos](https://github.com/Tillanueva/PeopleCounter/assets/128622581/bec6c11b-1c0b-4850-ab30-04b7df002c3d)
 
-Aquí se inicializan las variables de lectura y conteo.
+Aquí se inicializan las variables de lectura y conteo. se crea
+la lista conteo la cual se utiliza para contabilizar el reconocimiento
+de objetos. limitsUp es una lista que contiene cordenadas en 
+forma vertical. Por último , trackers es una variable a la cual
+se le asigna el método Sort() el cual re organiza la lista de conteo.
+
+
 
 
 
