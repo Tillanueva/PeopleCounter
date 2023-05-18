@@ -75,8 +75,19 @@ asigna el método cursor() para poder comunicarse con la base
 de datos.
 
 #### - Modelo YOLO
-
-![Modelo YOLO](https://github.com/Tillanueva/PeopleCounter/assets/128622581/2d574aa1-58be-4610-9eee-97a9e9745620)
+        # inicializar el Modelo de YOLOY
+    model = YOLO("Yolo-Weights/yolov8n.pt")
+    
+    classNames = ["person", "bicycle", "car", "motorbike", "aeroplane", "bus", "train", "truck", "boat",
+                  "traffic light", "fire hydrant", "stop sign", "parking meter", "bench", "bird", "cat",
+                  "dog", "horse", "sheep", "cow", "elephant", "bear", "zebra", "giraffe", "backpack", "umbrella",
+                  "handbag", "tie", "suitcase", "frisbee", "skis", "snowboard", "sports ball", "kite", "baseball bat",
+                  "baseball glove", "skateboard", "surfboard", "tennis racket", "bottle", "wine glass", "cup",
+                  "fork", "knife", "spoon", "bowl", "banana", "apple", "sandwich", "orange", "broccoli",
+                  "carrot", "hot dog", "pizza", "donut", "cake", "chair", "sofa", "pottedplant", "bed",
+                  "diningtable", "toilet", "tvmonitor", "laptop", "mouse", "remote", "keyboard", "cell phone",
+                  "microwave", "oven", "toaster", "sink", "refrigerator", "book", "clock", "vase", "scissors",
+                  "teddy bear", "hair drier", "toothbrush"]
 
 Ultralytics es una librería de una red neuronal la cual se puede 
 entrenar por medio del modelo YOLO, a este se le envían distintos
@@ -86,7 +97,14 @@ persona.
 
 #### - Variables de conteo
 
-![varConteos](https://github.com/Tillanueva/PeopleCounter/assets/128622581/bec6c11b-1c0b-4850-ab30-04b7df002c3d)
+    # Variables de conteo
+    conteo = []
+    global count
+    # Coordenadas límites verticales para poder contar a la persona
+    limitsUp = [0, 300, 1280, 300]  # Entrada
+    # variable de seguimiento de objetos
+    trackers = Sort(max_age=20, min_hits=3, iou_threshold=0.3)
+
 
 Aquí se inicializan las variables de lectura y conteo. se crea
 la lista conteo la cual se utiliza para contabilizar el reconocimiento
