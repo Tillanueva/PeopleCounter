@@ -12,7 +12,7 @@ de la cantidad de personas que ingresan a las tiendas a diario.
 En este apartado se describirán las instrucciones de configuración 
 del entorno de esta aplicación para su uso y mantenimiento.
 
-### - Base de datos
+### - Conexion a Base de datos
 1. Configurar entorno de Microsoft SQL Server Management Studio 
 para conexion remota.
 2. Asegurese de estar conectado en red y tener acceso a la base de 
@@ -210,7 +210,7 @@ recuadro. Este punto medio aydará a contabilizar las personas.
 
 Con esta condición se establece que si el pinto medio que se acaba
 de dibujar dentro del recuadro, cruza la linea límite que se definió
-al inicio, el contador va a aumentar. Posteriormente dentro de u try catch
+al inicio, el contador va a aumentar. Posteriormente dentro de un try except
 con el método cursor que definimos anteriormente se ingresa el conteo 
 a la base de datos. Las funciones que se invocan en el fragmento de código
 (mostrarDia(), mostrarMes) ejecuta vistas de la base de datos y las muestra
@@ -323,6 +323,10 @@ igualmente se invocan las funciones que actualizan las tablas que se definieron
 anteriormente. Al final se invoca el método mainloop, este método siempre debe ir
 al final del código ya que es la que hará que la ventana no se cierre hasta que el
 usuario no la cierre.
+
+
+
+
 
 
 
