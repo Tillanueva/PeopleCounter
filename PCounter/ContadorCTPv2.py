@@ -16,6 +16,7 @@ from dashboard import dashboard
 conn = conex.connec
 cursor = conn.cursor()
 
+
 # Colores
 plt.rcParams["axes.prop_cycle"] = plt.cycler(
     color=["#4C2A85", "#BE96FF", "#957DAD", "#5E366E", "#A98CCC"])
@@ -211,12 +212,10 @@ pantalla.state('zoomed')  # Dimensión de la ventana
 
 icon = PhotoImage(file="icon.png")
 
-# Fondo
 texto1 = Label(pantalla, text="Video en tiempo real: ")
 texto1.config(font="Sans-serif")
 texto1.place(x=400, y=20)
 
-# Muestra fecha actual
 lblFecha = Label(pantalla)
 lblFecha.place(x=10, y=20)
 times()  # Función captura fecha actual
