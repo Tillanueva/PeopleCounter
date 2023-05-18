@@ -124,3 +124,95 @@ se le asigna el método Sort() el cual re organiza la lista de conteo.
             ret, frame = cap.read()
 
 
+
+La función visualizar es la que contiene la mayor parte de la funcionalidad 
+de la aplicación, ya que aquí se gestiona la funcionalidad de la cámara 
+y el reconocimiento de objetos en tiempo real para poder llevar el conteo.
+
+     results = model(frame, stream=True)
+    
+                detections = np.empty((0, 5))
+    
+                for r in results:
+    
+                    # Dibujar recuadro del objeto
+                    boxes = r.boxes
+    
+                    for box in boxes:
+    
+                        # parametros del recuadro
+                        x1, y1, x2, y2 = box.xyxy[0]
+                        x1, y1, x2, y2 = int(x1), int(y1), int(x2), int(y2)
+                        w, h = x2 - x1, y2 - y1
+    
+                        # la variable cls captura los distintos objetos que se encuentran alrededor
+                        conf = math.ceil((box.conf[0] * 100)) / 100
+                        cls = int(box.cls[0])
+
+Dentro de la funcuón se define la variable results que es la encargada 
+de que el modelo yolo pueda leer lo que captura la cámara en tiempo real 
+al igual que se declara la variable detection la cual Crea y devuelve
+una referencia a un array vacío con las dimensiones especificadas en 
+la tupla dimensiones. Posteriormente se crea un for anidado en el cual
+se especifican los parametros para poder enmarcar los objetos que reconoce
+yolo.
+
+#### Si el objeto es una persona, dibuja un recuadro alrededor
+                    if classNames[cls] == "person" and conf > 0.3:
+                        # cornerRect dibuja el cuadro con los parámetros anteriores
+                        cvzone.cornerRect(frame, (x1, y1, w, h))
+
+                        # Coloca el nombre del objeto (persona)
+                        cvzone.putTextRect(frame, f'{classNames[cls]} {conf}', (max(0, x1), max(35, y1)), scale=1,
+                                           thickness=1)
+
+                        currentArray = np.array([x1, y1, x2, y2, conf])
+                        detections = np.vstack((detections, currentArray))
+            # Actualiza en tiempo real lo que captura el video
+            resultsTracker = trackers.update(detections)
+
+Se crea la condición que indica si lo que lee el modelo yolo mediante 
+la variable cls es una persona, si la condición se cumple, dibuja un 
+recuadro al rededor de la persona. Posteriormente se actualiza el tracker con lo que acaba de 
+detectar el modelo.
+
+     for results in resultsTracker:
+        # Parametros para el punto medio
+        x1, y1, x2, y2, id1 = results
+        x1, y1, x2, y2 = int(x1), int(x1), int(x2), int(y2)
+
+        w, h = x2 - x1, y2 - y1
+        # Ecuación de definición de punto medio
+        cx, cy = x1 + w // 2, y1 + h // 2
+    
+        # Dibuja un punto medio en el recuadro de la persona
+        cv2.circle(frame, (cx, cy), 5, (255, 0, 255), cv2.FILLED)
+    
+Con los resultados capturados anteriormente, dentro de un for se
+especifican parametros para dibujar un punto medio dentro del
+recuadro. Este punto medio aydará a contabilizar las personas.
+
+
+ #### si la persona pasa la linea límite se suma al contador de personas que entran
+                if limitsUp[0] < cx < limitsUp[2] and limitsUp[1] - 15 < cy < limitsUp[1] + 15:
+                    if conteo.count(id1) == 0:
+                        conteo.append(id1)
+                        try:
+                            with cursor:
+                                cursor.execute(consulta, (fecha, 1))
+                                print("Almacenado")
+                                mostrarDia()
+                                mostrarMes()
+                        except Exception as e:
+                            print("Ocurrió un error al insertar: ", e)
+
+                        cv2.line(frame, (limitsUp[3], limitsUp[2]), (limitsUp[1], limitsUp[0]), (0, 255, 0), 5)
+
+Con esta condición se establece que si el pinto medio que se acaba
+de dibujar dentro del recuadro, cruza la linea límite que se definió
+al inicio, el contador va a aumentar. Posteriormente dentro de u try catch
+con el método cursor que definimos anteriormente se ingresa el conteo 
+a la base de datos. Las funciones que se invocan en el fragmento de código
+(mostrarDia(), mostrarMes) ejecuta vistas de la base de datos y las muestra
+en tablas.
+
