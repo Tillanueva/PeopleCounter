@@ -20,9 +20,9 @@ datos de manera remota.
 
 
 ### - Ejecutable
-1. Buscar  Peopen la carpeta "bulid" el archivo ejecutable llamado ContadorCT
-2. Dae doble click para iniciar.
-
+El archivo ejecutable se encuentra en el directorio PCounter/build - copia/exe.win-amd64-3.10.
+El nombre del archivo es ContadorCTPv2.exe, para ejecutarlo unicamente dar
+doble clic y esperar a que cargue la interfaz.
 
 La interfaz de People Counter es sencilla ya que unicamente debe iniciar  
 la aplicación y esta empezará a realizar un conteo al mismo tiempo que este 
