@@ -20,7 +20,7 @@ datos de manera remota.
 
 
 ### - Ejecutable
-1. Buscar en la carpeta "bulid" el archivo ejecutable llamado ContadorCT
+1. Buscar  Peopen la carpeta "bulid" el archivo ejecutable llamado ContadorCT
 2. Dae doble click para iniciar.
 
 
@@ -346,11 +346,86 @@ usuario no la cierre.
     year = [i for i in cursor.fetchall()]
     traficoAnual = dict((i[0],i[1])for i in year)
 
+Este módulo tiene la función de extraer la data de la base para posteriormente
+colocarla en diccionarios, los diccionarios contienen información del tráfico
+por día, por més y por año, de esta forma será más fácil poder colocar los 
+datos en el dashboard para que este pueda mostrar gráficas por medio de la 
+librería matplotlib.
 
 
+### DASHBOARD
+    import tkinter as tk
+    from matplotlib.backends.backend_tkagg import FigureCanvasTkAgg
+    import matplotlib.pyplot as plt
+    from data import traficoMensual, traficoDia, traficoAnual
 
+Para el dashboard se necesitaron las librerías de tkinter, matplotlib
+y se importaron los diccionarios definidos anteriormente para poder
+mostrar los datos en el dashboard.
 
+    def dashboard():
+        plt.rcParams["axes.prop_cycle"] = plt.cycler(
+            color=["#4C2A85", "#BE96FF", "#957DAD", "#5E366E", "#A98CCC"])
+    
+        # Chart 1: Bar chart of sales data
+        fig1, ax1 = plt.subplots()
+        ax1.bar(traficoDia.keys(), traficoDia.values())
+        ax1.set_title("Tráfico los últimos 5 días")
+        ax1.set_xlabel("Fecha")
+        ax1.set_ylabel("Tráfico")
+        ax1.invert_xaxis()
+        # plt.show()
+    
+        # Chart 2: Horizontal bar chart of inventory data
+        fig2, ax2 = plt.subplots()
+        ax2.bar(traficoMensual.keys(), traficoMensual.values())
+        ax2.set_title("Tráfico los últimos 5 meses")
+        ax2.set_xlabel("Mes")
+        ax2.set_ylabel("Tráfico")
+    
 
+El dashboard se encuentra contenido en una función con el mismo nombre
+para poder invocarla en el módulo principal. Dentro de la función
+se define la información que contenerá la gráfica, y traerá los datos
+de los diccionarios han sido definidos anteriormente. 
+
+        root = tk.Tk()
+        root.title("Dashboard")
+        root.state('zoomed')
+    
+        side_frame = tk.Frame(root, bg="#4C2A85")
+        side_frame.pack(side="left", fill="y")
+    
+        label = tk.Label(side_frame, text="Dashboard", bg="#4C2A85", fg="#FFF", font=25)
+        label.pack(pady=5, padx=0)
+        label.config(width=20, height=2)
+    
+        charts_frame = tk.Frame(root)
+        charts_frame.pack()
+    
+        upper_frame = tk.Frame(charts_frame)
+        upper_frame.pack(fill="both", expand=True)
+
+En este fragmento de código se inicializa la ventana del dashboard
+y se crean distintos frames para poder darle un mejor diseño a la
+interfaz.
+
+    canvas1 = FigureCanvasTkAgg(fig1, upper_frame)
+    canvas1.draw()
+    canvas1.get_tk_widget().pack(side="left", fill="both", expand=True)
+
+    canvas2 = FigureCanvasTkAgg(fig2, upper_frame)
+    canvas2.draw()
+    canvas2.get_tk_widget().pack(side="left", fill="both", expand=True)
+
+    lower_frame = tk.Frame(charts_frame)
+    lower_frame.pack(fill="both", expand=True)
+
+    root.mainloop()
+
+Finalmente se muestran los gráficos  con el método FigureCanvasTkAgg
+y se les posiciona en alguno de los frames de la ventana dashboard y se
+asigna el método mainloop a la ventana.
 
 
 
