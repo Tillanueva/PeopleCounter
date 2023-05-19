@@ -427,5 +427,9 @@ Finalmente se muestran los gráficos  con el método FigureCanvasTkAgg
 y se les posiciona en alguno de los frames de la ventana dashboard y se
 asigna el método mainloop a la ventana.
 
+![dashboard](https://github.com/Tillanueva/PeopleCounter/assets/128622581/6f6de7e9-d074-4dcc-8af5-357e7c335c21)
+
+La ventana de dashboard se mostrará de esta forma, en esta ventana se muestran las gráficas de tráfico por día y por mes.
+
 
 
