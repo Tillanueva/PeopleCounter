@@ -76,7 +76,7 @@ la aplicación y esta empezará a realizar un conteo al mismo tiempo que este
 muestra una tabla y una grafica con los datos almacenados en tiempo real
 
 
-![Screenshot_1](https://github.com/Tillanueva/PeopleCounter/assets/128622581/9219125b-557d-4fde-86f8-8a9f2c9f1427)
+![Screenshot_1](https://github.com/Tillanueva/PeopleCounter/assets/128622581/c368ca51-fd13-4ed5-a3d6-83326c2e62bb)
 
 #### Dashboard
 ![dashboard](https://github.com/Tillanueva/PeopleCounter/assets/128622581/3a037e75-66be-473a-9eb9-e2423dc16eaa)
