@@ -1,4 +1,4 @@
-   ![Badge en Desarollo](https://img.shields.io/badge/STATUS-EN%20DESAROLLO-green)
+   ![Badge en Desarollo](https://img.shields.io/badge/STATUS-TESTING-green)
 
 
 # People Counter Tiendas Cortitelas
@@ -74,6 +74,12 @@ doble clic y esperar a que cargue la interfaz.
 La interfaz de People Counter es sencilla ya que unicamente debe iniciar  
 la aplicación y esta empezará a realizar un conteo al mismo tiempo que este 
 muestra una tabla y una grafica con los datos almacenados en tiempo real
+
+
+![Screenshot_1](https://github.com/Tillanueva/PeopleCounter/assets/128622581/c368ca51-fd13-4ed5-a3d6-83326c2e62bb)
+
+#### Dashboard
+![dashboard](https://github.com/Tillanueva/PeopleCounter/assets/128622581/3a037e75-66be-473a-9eb9-e2423dc16eaa)
 
 ********
 ## Manual Técnico
