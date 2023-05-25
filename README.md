@@ -1,4 +1,4 @@
-   ![Badge en Desarollo](https://img.shields.io/badge/STATUS-EN%20PRUEBA-green)
+   ![Badge en Desarollo](https://img.shields.io/badge/STATUS-TESTING-green)
 
 
 # People Counter Tiendas Cortitelas
