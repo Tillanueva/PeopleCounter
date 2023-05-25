@@ -75,6 +75,12 @@ La interfaz de People Counter es sencilla ya que unicamente debe iniciar
 la aplicación y esta empezará a realizar un conteo al mismo tiempo que este 
 muestra una tabla y una grafica con los datos almacenados en tiempo real
 
+
+![Screenshot_1](https://github.com/Tillanueva/PeopleCounter/assets/128622581/9219125b-557d-4fde-86f8-8a9f2c9f1427)
+
+#### Dashboard
+![dashboard](https://github.com/Tillanueva/PeopleCounter/assets/128622581/3a037e75-66be-473a-9eb9-e2423dc16eaa)
+
 ********
 ## Manual Técnico
 ### - Base de datos y conexión
