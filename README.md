@@ -13,14 +13,58 @@ En este apartado se describirán las instrucciones de configuración
 del entorno de esta aplicación para su uso y mantenimiento.
 
 ### - Conexion a Base de datos
-1. Configurar entorno de Microsoft SQL Server Management Studio 
-para conexion remota.
-2. Asegurese de estar conectado en red y tener acceso a la base de 
-datos de manera remota.
+1- Instale Microsoft SQL Server y crear un usuario llamado Project01 con contraseña PProject01.
+2- Instale la base de datos PROJECT_PC01 configure en el usuario como Default database.
+![configuracionbd](https://github.com/Tillanueva/PeopleCounter/assets/128622581/a449eb84-382e-43d6-8ff9-fdc5333e2ad3)
 
+Para poder acceder a la base de datos de la aplicación, primero debe modificar el archivo conexión, debe
+cambiar el valor de SERVER y colocar el servidor local de su equipo.
+      
+      connec = pyodbc.connect('DRIVER={SQL Server};SERVER=DESKTOP-O6UFVI0;DATABASE=PROJECT_PC01;UID=Project01;PWD'
+                            '=PProject01')
 
 ### - Ejecutable
-El archivo ejecutable se encuentra en el directorio PCounter/build - copia/exe.win-amd64-3.10.
+
+      import sys
+      import os
+      from cx_Freeze import setup, Executable
+
+      files = ['requirements.txt', 'conexion.py', 'dashboard.py', 'data.py', 'sort.py']
+
+      exe = Executable(script="ContadorCTPv2.py", base="Win32GUI")
+
+
+      class recursion_depth:
+          def __init__(self, limit):
+              self.limit = limit
+              self.default_limit = sys.getrecursionlimit()
+
+          def __enter__(self):
+              sys.setrecursionlimit(self.limit)
+
+          def __exit__(self, type, value, traceback):
+              sys.setrecursionlimit(self.default_limit)
+
+
+      def setup_():
+          setup(
+              name="Contador de Personas | Tiendas Cortitelas",
+              version="0.1",
+              author="Tania Villanueva",
+              options={'build_exe': {'include_files': files}},
+              executables=[exe]
+          )
+
+
+      with recursion_depth(5000):
+          setup_()
+
+
+Para Generar el ejecutable se debe utilizar el archivo setup.py, este archivo se encuentra en 
+el directorio PeopleCounter/PCounter/. Para poder ejecutar este archivo se debe abrir la terminal 
+y escribir el comando -python setup.py build, este comando generará el ejecutable.
+
+El archivo ejecutable se mostrará en el directorio PCounter/build - copia/exe.win-amd64-3.10.
 El nombre del archivo es ContadorCTPv2.exe, para ejecutarlo unicamente dar
 doble clic y esperar a que cargue la interfaz.
 
