@@ -15,6 +15,8 @@ del entorno de esta aplicación para su uso y mantenimiento.
 ### - Conexion a Base de datos
 1- Instale Microsoft SQL Server y crear un usuario llamado Project01 con contraseña PProject01.
 2- Instale la base de datos PROJECT_PC01 configure en el usuario como Default database.
+
+
 ![configuracionbd](https://github.com/Tillanueva/PeopleCounter/assets/128622581/a449eb84-382e-43d6-8ff9-fdc5333e2ad3)
 
 Para poder acceder a la base de datos de la aplicación, primero debe modificar el archivo conexión, debe
