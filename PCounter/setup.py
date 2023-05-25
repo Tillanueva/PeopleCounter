@@ -2,9 +2,9 @@ import sys
 import os
 from cx_Freeze import setup, Executable
 
-files = ['requirements.txt', 'conexion.py', 'dashboard.py', 'data.py', 'sort.py']
+files = ['requirements.txt', 'conexion.py', 'dashboard.py', 'data.py', 'sort.py', 'icon.png']
 
-exe = Executable(script="ContadorCTPv2.py", base="Win32GUI")
+exe = Executable(script="ContadorCT.py", base="Win32GUI")
 
 
 class recursion_depth:

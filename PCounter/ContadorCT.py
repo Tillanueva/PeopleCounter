@@ -212,10 +212,6 @@ pantalla.state('zoomed')  # Dimensión de la ventana
 
 icon = PhotoImage(file="icon.png")
 
-texto1 = Label(pantalla, text="Video en tiempo real: ")
-texto1.config(font="Sans-serif")
-texto1.place(x=400, y=20)
-
 lblFecha = Label(pantalla)
 lblFecha.place(x=10, y=20)
 times()  # Función captura fecha actual
