@@ -8,4 +8,3 @@ class conex:
 
     consulta = "INSERT INTO conteo(fecha, entradas) VALUES (?, ?);"
 
-

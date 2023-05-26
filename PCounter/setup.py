@@ -31,3 +31,6 @@ def setup_():
 
 with recursion_depth(5000):
     setup_()
+
+
+# python setup.py build

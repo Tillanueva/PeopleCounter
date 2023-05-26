@@ -240,6 +240,7 @@ tree1.heading('1', text='Total Personas', anchor=CENTER)
 tree1.place(x=710, y=345)
 # Video
 
+#Inicio cámara
 cap = cv2.VideoCapture(0)
 cap.set(1, 1700)
 cap.set(4, 520)
