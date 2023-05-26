@@ -75,6 +75,13 @@ La interfaz de People Counter es sencilla ya que unicamente debe iniciar
 la aplicación y esta empezará a realizar un conteo al mismo tiempo que este 
 muestra una tabla y una grafica con los datos almacenados en tiempo real
 
+Si desea generar un ejecutable cuando ya existe uno debe borrar la carpeta build antes para 
+que no genere ningún conflicto.
+
+#### Comando para generar el build
+
+      -python setup.py build
+
 
 ![Screenshot_1](https://github.com/Tillanueva/PeopleCounter/assets/128622581/c368ca51-fd13-4ed5-a3d6-83326c2e62bb)
 
